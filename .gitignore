@@ -1,0 +1,9 @@
+# Log files
+*.log
+
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
