@@ -2,6 +2,7 @@ import subprocess
 import webbrowser
 import os
 import time
+import sys
 
 def main():
     """
@@ -11,7 +12,7 @@ def main():
     try:
         # Start the backend server
         server_process = subprocess.Popen(
-            ["uvicorn", "main:app", "--host", "127.0.0.1", "--port", "8000"],
+            [sys.executable, "-m", "uvicorn", "main:app", "--host", "127.0.0.1", "--port", "8000"],
             cwd="backend"
         )
         print("Starting backend server...")
