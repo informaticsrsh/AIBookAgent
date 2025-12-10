@@ -3,27 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Book Writer</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Chatbot</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        #chat-container {
+            width: 100%;
+            max-width: 600px;
+            height: 80vh;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background-color: #fff;
+        }
+        #chat-messages {
+            flex-grow: 1;
+            padding: 10px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        .message {
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 18px;
+            max-width: 70%;
+            word-wrap: break-word;
+        }
+        .user-message {
+            align-self: flex-end;
+            background-color: #007bff;
+            color: white;
+        }
+        .bot-message {
+            align-self: flex-start;
+            background-color: #e9e9eb;
+            color: black;
+        }
+        #chat-input-container {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #ccc;
+        }
+        #chat-input {
+            flex-grow: 1;
+            border: 1px solid #ccc;
+            border-radius: 18px;
+            padding: 10px;
+            font-size: 1em;
+        }
+        #send-button {
+            border: none;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 18px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <div id="container">
-        <div id="chat-window">
-            <div id="chat-messages"></div>
-            <input type="text" id="chat-input" placeholder="Enter your prompt here...">
-        </div>
-        <div id="controls">
-            <button id="start-btn">Start Generation</button>
-            <button id="stop-btn">Stop</button>
-            <button id="expand-btn">Expand Manuscript</button>
-            <button id="open-btn">Open Current Book</button>
-        </div>
-        <div id="settings">
-            <input type="password" id="api-key-input" placeholder="Enter your API key">
-            <button id="save-api-key-btn">Save API Key</button>
-            <br>
-            <label for="rules-file">Author Rules File:</label>
-            <input type="file" id="rules-file">
+    <div id="chat-container">
+        <div id="chat-messages"></div>
+        <div id="chat-input-container">
+            <input type="text" id="chat-input" placeholder="Type a message...">
+            <button id="send-button">Send</button>
         </div>
     </div>
     <script src="script.js"></script>

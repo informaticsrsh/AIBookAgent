@@ -9,29 +9,30 @@ def main():
     """
     server_process = None
     try:
-        # Start the backend server
+        # Start the backend server using python -m uvicorn for cross-platform compatibility
         server_process = subprocess.Popen(
-            ["uvicorn", "main:app", "--host", "127.0.0.1", "--port", "8000"],
+            ["python", "-m", "uvicorn", "main:app", "--host", "127.0.0.1", "--port", "8000"],
             cwd="backend"
         )
         print("Starting backend server...")
-        time.sleep(5)  # Give the server a moment to start
+        time.sleep(3)  # Give the server a moment to start
 
-        # Open the frontend in the default web browser
-        frontend_path = os.path.abspath(os.path.join("frontend", "index.html"))
-        webbrowser.open(f"file://{frontend_path}")
-        print(f"Opening frontend at: file://{frontend_path}")
+        # Open the application in the default web browser
+        url = "http://127.0.0.1:8000"
+        webbrowser.open(url)
+        print(f"Opening application at: {url}")
 
-        # Keep the script running until the server is terminated
+        # Wait for the server process to terminate
         server_process.wait()
     except KeyboardInterrupt:
-        print("Stopping backend server...")
+        print("\nStopping the server...")
     except Exception as e:
         print(f"An error occurred: {e}")
     finally:
         if server_process and server_process.poll() is None:
             server_process.terminate()
             server_process.wait()
+        print("Server has been shut down.")
         input("Press Enter to exit...")
 
 if __name__ == "__main__":
