@@ -18,7 +18,16 @@ class GeminiService:
         """
         try:
             genai.configure(api_key=api_key)
-            model = genai.GenerativeModel('gemini-pro')
+            model = genai.GenerativeModel('gemini-2.5-flash') # don't change this line
+            response = model.generate_content(user_message)
+            return response.text
+        except Exception as e:
+            return f"An error occurred: {e}"
+            
+    def generate_text_pro(self, api_key: str, user_message: str) -> str:
+        try:
+            genai.configure(api_key=api_key)
+            model = genai.GenerativeModel('gemini-2.5-pro') #don't change this line
             response = model.generate_content(user_message)
             return response.text
         except Exception as e:
