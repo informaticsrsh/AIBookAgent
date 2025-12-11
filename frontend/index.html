@@ -70,6 +70,16 @@
             background-color: #e9e9eb;
             color: black;
         }
+        .agent-a-message {
+            align-self: flex-start;
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+        .agent-b-message {
+            align-self: flex-start;
+            background-color: #f8d7da;
+            color: #721c24;
+        }
         #chat-input-container {
             display: flex;
             padding: 10px;
@@ -91,6 +101,16 @@
             margin-left: 10px;
             cursor: pointer;
         }
+        #stop-button {
+            display: none; /* Hidden by default */
+            border: none;
+            background-color: #dc3545;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 18px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
 
         /* Settings Modal */
         #settings-modal {
@@ -106,7 +126,7 @@
         }
         .modal-content {
             background-color: #fefefe;
-            margin: 15% auto;
+            margin: 10% auto;
             padding: 20px;
             border: 1px solid #888;
             width: 80%;
@@ -120,7 +140,7 @@
             font-weight: bold;
             cursor: pointer;
         }
-        .modal-content input {
+        .modal-content input, .modal-content textarea {
             width: calc(100% - 22px);
             padding: 10px;
             margin-top: 10px;
@@ -148,6 +168,7 @@
         <div id="chat-input-container">
             <input type="text" id="chat-input" placeholder="Type a message...">
             <button id="send-button">Send</button>
+            <button id="stop-button">Stop</button>
         </div>
     </div>
 
@@ -158,7 +179,20 @@
             <h2>Settings</h2>
             <label for="api-key-input">Gemini API Key:</label>
             <input type="password" id="api-key-input" placeholder="Enter your API Key">
-            <button id="save-api-key-button">Save</button>
+
+            <h3>Debate Settings</h3>
+            <label for="flash-rpm-input">Flash RPM:</label>
+            <input type="number" id="flash-rpm-input" value="15">
+            <label for="pro-rpm-input">Pro RPM:</label>
+            <input type="number" id="pro-rpm-input" value="2">
+
+            <label for="agent-a-role-input">Agent A Role:</label>
+            <textarea id="agent-a-role-input" rows="3" placeholder="e.g., You are an optimist."></textarea>
+
+            <label for="agent-b-role-input">Agent B Role:</label>
+            <textarea id="agent-b-role-input" rows="3" placeholder="e.g., You are a skeptic."></textarea>
+
+            <button id="save-settings-button">Save</button>
         </div>
     </div>
 
