@@ -93,8 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const debateSettings = {
                 topic: text,
                 api_key: apiKey,
-                agent_a_role: localStorage.getItem('agent-a-role'),
-                agent_b_role: localStorage.getItem('agent-b-role'),
+                agent_a_role: agentARoleInput.value,
+                agent_b_role: agentBRoleInput.value,
                 flash_rpm: parseInt(flashRpmInput.value),
                 pro_rpm: parseInt(proRpmInput.value),
             };
@@ -108,7 +108,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (!response.ok) {
                     const errorData = await response.json();
-                    throw new Error(errorData.detail || 'Failed to start debate');
+                    let detail = errorData.detail || 'Failed to start debate';
+                    if (typeof detail === 'object') {
+                        detail = JSON.stringify(detail, null, 2);
+                    }
+                    throw new Error(detail);
                 }
 
                 setDebateState(true);
